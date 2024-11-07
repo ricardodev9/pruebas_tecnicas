@@ -1,0 +1,42 @@
+/* Estilos generales */
+body {
+    background-color: #f4f7fa;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #495057;
+}
+
+.form-container p {
+    text-align: center;
+}
+
+.btn-custom {
+    width: 100%;
+    padding: 10px;
+}
+
+.btn-link {
+    text-decoration: none;
+}
+
+.form-box {
+    display: none;
+}
+
+/* Agregar estilos de animación al formulario */
+#login-form, #register-form {
+    display: block;
+}
+
