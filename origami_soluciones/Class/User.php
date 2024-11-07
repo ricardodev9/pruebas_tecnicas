@@ -64,5 +64,95 @@ class User {
             return "Credenciales incorrectas.";
         }
     }
+
+    //Método para hacer un get de todos los usuario
+    public function getUsers(){
+        $sql = "SELECT * FROM users";
+        $result = $this->conn->query($sql);
+        // Verifica que se obtuvieron resultados
+        if ($result->num_rows > 0) {
+            $users = [];
+            while ($user = $result->fetch_object()) {
+                $users[] = $user;
+            }
+            return $users;
+        } else {
+            return [];
+        }
+    }
+
+    // Método para eliminar el usuario 
+    public function deleteUser($id_user){
+        $sql = "DELETE FROM users WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id_user);
+
+        // Ejecutar la consulta
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+        // Cerramos el statement
+        $stmt->close();
+    }
+
+    // Método para recoger un uusario a través de su id
+    public function getById($id_user){
+        $sql = "SELECT * FROM users WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        if ($stmt === false) {
+            die('Error al preparar la consulta: ' . $this->conn->error);
+        }
+        $stmt->bind_param("i", $id_user);
+        $stmt->execute();
+
+        // Resultado
+        $result = $stmt->get_result();
+        
+        // Comprobamos si se encontró el usuario
+        if ($result->num_rows > 0) {
+            return $result->fetch_object();
+        } else {
+            return null;
+        }
+        
+        // Cerramos el statement
+        $stmt->close();
+    }
+
+    // Método para editar un usuario
+    public function update($id, $name, $email, $password = null) {
+        // Si la contraseña es proporcionada, se actualiza. Si no, no se actualiza.
+        if ($password) {
+            $sql = "UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            if ($stmt === false) {
+                die('Error en la preparación de la consulta: ' . $this->conn->error);
+            }
+        
+            $stmt->bind_param("sssi", $name, $email, $hashedPassword, $id);
+        } else {
+            $sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
+            $stmt = $this->conn->prepare($sql);
+        
+            if ($stmt === false) {
+                die('Error en la preparación de la consulta: ' . $this->conn->error);
+            }
+        
+            $stmt->bind_param("ssi", $name, $email, $id);
+        }
+
+        // Ejecutamos la consulta
+        if ($stmt->execute()) {
+            return true; 
+        } else {
+            return false;  
+        }
+    }
+    
+    
 }
 ?>
