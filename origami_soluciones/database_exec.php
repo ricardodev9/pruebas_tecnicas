@@ -47,5 +47,6 @@
     } else {
         echo "La tabla de usuarios ya existe.<br>";
     }
+    echo "<a href='http://localhost/pruebas_tecnicas/origami_soluciones/index.php'>Inicio</a>";
     
 ?>
