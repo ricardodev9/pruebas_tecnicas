@@ -1,5 +1,6 @@
 <?php
 session_start();  // Iniciar la sesión
+include_once 'inc/functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
