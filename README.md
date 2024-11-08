@@ -6,4 +6,4 @@ Si decides utilizar este proyecto, te animo a que añadas una mención o enlace 
 
 ## Contacto
 - **Email**: [ricardoapazacueva2000@gmail.com](mailto:ricardoapazacueva2000@gmail.com)
-- **LinkedIn**: <a href="https://www.linkedin.com/in/tu-perfil" target="_blank">linkedin.com/in/tu-perfil</a>
+- **LinkedIn**: <a href="[https://www.linkedin.com/in/tu-perfil](https://www.linkedin.com/in/ricardo-apaza-cueva-43b0572a1/)" target="_blank">LinkedIn</a>
